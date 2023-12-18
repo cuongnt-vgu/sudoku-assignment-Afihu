@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 #include "utils.c"
+#include "hidden_singles.c"
 #include "hidden_singles.h"
 
 int main(int argc, char **argv)

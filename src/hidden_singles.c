@@ -24,7 +24,7 @@ void find_hidden_single(Cell **row, HiddenSingle *hidden_singles, int *counter) 
             if (candidates[i]) {
                 free(candidates);
                 hidden_singles[*counter].value = i + 1;
-                hidden_singles[*counter].cell = row[j];
+                hidden_singles[*counter].p_cell = row[j];
                 (*counter)++;
                 break;
             }

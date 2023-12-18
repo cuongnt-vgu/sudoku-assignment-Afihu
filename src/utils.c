@@ -111,14 +111,10 @@ void set_candidates(Cell *cell, int *candidates, int size)
 
 int *get_candidates(Cell *cell)
 {
-    int *out = malloc(cell->num_candidates * sizeof(int));
-    int counter = 0;
+    int *out = malloc(BOARD_SIZE * sizeof(int));
     for (int i = 0; i < BOARD_SIZE; i++)
     {
-        if (cell->candidates[i])
-        {
-            out[counter++] = i + 1;
-        }
+        out[i] = cell->candidates[i] ? i + 1 : 0;
     }
     return out;
 }

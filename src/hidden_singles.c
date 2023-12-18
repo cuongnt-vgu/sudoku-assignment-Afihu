@@ -26,9 +26,11 @@ void find_hidden_single(Cell **row, HiddenSingle *hidden_singles, int *counter) 
         for (j = 0; j < BOARD_SIZE; j++) {
             int *candidates = get_candidates(row[j]);
             if (candidates[i]) {
-                hidden_singles[*counter].value = i + 1;
-                hidden_singles[*counter].p_cell = row[j];
-                (*counter)++;
+                if (*counter < BOARD_SIZE - 1) {
+                    hidden_singles[*counter].value = i + 1;
+                    hidden_singles[*counter].p_cell = row[j];
+                    (*counter)++;
+                }
                 free(candidates);
                 break;
             }

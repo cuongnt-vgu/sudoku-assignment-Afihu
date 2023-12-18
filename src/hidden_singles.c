@@ -1,4 +1,5 @@
 #include "hidden_singles.h"
+#include <stdlib.h>
 
 void find_hidden_single_values(Cell **row, int *hidden_single_values) {
     int i, j, count;
@@ -8,9 +9,12 @@ void find_hidden_single_values(Cell **row, int *hidden_single_values) {
         for (j = 0; j < BOARD_SIZE; j++) {
             int *candidates = get_candidates(row[j]);
             if (candidates[i]) {
-                free(candidates);
-                if (++count > 1) break;
+                if (++count > 1) {
+                    free(candidates);
+                    break;
+                }
             }
+            free(candidates);
         }
         if (count == 1) hidden_single_values[i] = 1;
     }
@@ -22,18 +26,19 @@ void find_hidden_single(Cell **row, HiddenSingle *hidden_singles, int *counter) 
         for (j = 0; j < BOARD_SIZE; j++) {
             int *candidates = get_candidates(row[j]);
             if (candidates[i]) {
-                free(candidates);
                 hidden_singles[*counter].value = i + 1;
                 hidden_singles[*counter].p_cell = row[j];
                 (*counter)++;
+                free(candidates);
                 break;
             }
+            free(candidates);
         }
     }
 }
 
 int hidden_singles(SudokuBoard *p_board) {
-    int i, j, num;
+    int i, num;
     int hidden_single_values[BOARD_SIZE];
     HiddenSingle hidden_singles[BOARD_SIZE];
     int counter = 0;

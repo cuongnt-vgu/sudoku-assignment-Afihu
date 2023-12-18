@@ -61,7 +61,7 @@ src/%.o: src/%.c src/%.h
 autograder: $(OBJS) test/autograder.c
 	$(CC) $(FLAGS) $^ $(LIBS) -o $@ -lm
 
-sudoku: $(OBJS) src/sudoku.c
+sudoku: $(OBJS)
 	$(CC) $(FLAGS) $^ $(LIBS) -o $@ -lm
 
 check: autograder

@@ -1,9 +1,21 @@
 #include "sudoku.h"
-#include "hidden_singles.h"
-
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "hidden_singles.h"
+
+void print_board(SudokuBoard *p_board) {
+    for (int i = 0; i < BOARD_SIZE; i++) {
+        for (int j = 0; j < BOARD_SIZE; j++) {
+            if (p_board->data[i][j].num_candidates == 1) {
+                printf("%d ", p_board->data[i][j].value);
+            } else {
+                printf("0 ");
+            }
+        }
+        printf("\n");
+    }
+}
 
 int main(int argc, char **argv)
 {
@@ -22,10 +34,10 @@ int main(int argc, char **argv)
     while (board->solved_counter < BOARD_SIZE * BOARD_SIZE)
     {
         solved_counter = check_solved_cells(board, &p_solved_cells);
-        printf("check_solved_cells %d\n", solved_counter);
+        // printf("check_solved_cells %d\n", solved_counter);
         if (show_possible(board, p_solved_cells, solved_counter))
         {
-            printf("show_possible -> Yes\n");
+            // printf("show_possible -> Yes\n");
             continue;
         }
         solved_counter = hidden_singles(board);

@@ -1,8 +1,8 @@
-#include "sudoku.h"
-
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "sudoku.h"
 
 void init_sudoku(SudokuBoard *p_board)
 {
@@ -52,7 +52,6 @@ bool is_solved(SudokuBoard *p_board)
     return p_board->solved_counter == BOARD_SIZE * BOARD_SIZE;
 }
 
-// Modified to print in 9x9 board format
 void print_solution(SudokuBoard *p_board)
 {
     assert(is_solved(p_board));
@@ -62,13 +61,11 @@ void print_solution(SudokuBoard *p_board)
         for (int j = 0; j < BOARD_SIZE; j++)
         {
             int *candidates = get_candidates(&p_board->data[i][j]);
-            printf("%d ", candidates[0]);
+            printf("%d", candidates[0]);
             free(candidates);
         }
-        printf("\n");
     }
 }
-
 
 void set_candidate(Cell *cell, int value)
 {
@@ -111,10 +108,14 @@ void set_candidates(Cell *cell, int *candidates, int size)
 
 int *get_candidates(Cell *cell)
 {
-    int *out = malloc(BOARD_SIZE * sizeof(int));
+    int *out = malloc(cell->num_candidates * sizeof(int));
+    int counter = 0;
     for (int i = 0; i < BOARD_SIZE; i++)
     {
-        out[i] = cell->candidates[i] ? i + 1 : 0;
+        if (cell->candidates[i])
+        {
+            out[counter++] = i + 1;
+        }
     }
     return out;
 }

@@ -84,22 +84,6 @@ int hidden_singles(SudokuBoard *p_board) {
             }
         }
         currentCell->num_candidates = 1;
-        // Remove the candidate from other cells in the same row
-        for (int col = 0; col < BOARD_SIZE; col++) {
-            if (col != currentCell->col_index) {
-                apply_constraint(p_board->p_rows[currentCell->row_index], value);
-            }
-        }
-
-        // Remove the candidate from other cells in the same column
-        for (int row = 0; row < BOARD_SIZE; row++) {
-            if (row != currentCell->row_index) {
-                apply_constraint(p_board->p_cols[currentCell->col_index], value);
-            }
-        }
-
-        // Remove the candidate from other cells in the same box
-        apply_constraint(p_board->p_boxes[currentCell->box_index], value);
     }
 
     return hiddenSingleCounter;

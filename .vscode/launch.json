@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/sudoku",
-            "args": ["000004028406000005100030600000301000087000140000709000002010003900000507670400000"],
+            "args": ["309000470200709800087000900754861239600924758928357641000000596000106307006000104"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

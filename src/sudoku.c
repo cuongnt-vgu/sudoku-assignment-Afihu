@@ -3,19 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "hidden_singles.h"
-
-void print_board(SudokuBoard *p_board) {
-    for (int i = 0; i < BOARD_SIZE; i++) {
-        for (int j = 0; j < BOARD_SIZE; j++) {
-            if (p_board->data[i][j].num_candidates == 1) {
-                printf("%d ", p_board->data[i][j].value);
-            } else {
-                printf("0 ");
-            }
-        }
-        printf("\n");
-    }
-}
+#include "naked_pairs.h"
 
 int main(int argc, char **argv)
 {
@@ -40,10 +28,10 @@ int main(int argc, char **argv)
             // printf("show_possible -> Yes\n");
             continue;
         }
-        solved_counter = hidden_singles(board);
+        solved_counter = naked_pairs(board);
         if (solved_counter)
         {
-            printf("hidden_singles %d\n", solved_counter);
+            // printf("hidden_singles %d\n", solved_counter);
             continue;
         }
     }

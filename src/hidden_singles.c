@@ -11,7 +11,7 @@ int hidden_singles(SudokuBoard *p_board) {
     // Create a temporary array to store hidden singles
     HiddenSingle hiddenSingles[BOARD_SIZE * BOARD_SIZE];
 
-    // Iterate through each unsolved cell
+    // Iterate through each cell
     for (int i = 0; i < BOARD_SIZE; i++) {
         for (int j = 0; j < BOARD_SIZE; j++) {
             Cell *currentCell = &p_board->data[i][j];
@@ -71,7 +71,7 @@ int hidden_singles(SudokuBoard *p_board) {
         }
     }
 
-    // Update the board with the found hidden singles
+    // Update the cells with the found hidden singles
     for (int k = 0; k < hiddenSingleCounter; k++) {
         Cell *currentCell = hiddenSingles[k].p_cell;
         int value = hiddenSingles[k].value;
